@@ -13,4 +13,14 @@ public class BookService implements IBookService {
     public List<Book> showList() {
         return bookRepository.showList();
     }
+
+    @Override
+    public boolean addBook(Book book) {
+        return bookRepository.addBook(book);
+    }
+
+    @Override
+    public boolean deleteBook(int id) {
+        return bookRepository.deleteBook(id);
+    }
 }

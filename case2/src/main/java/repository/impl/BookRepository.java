@@ -16,6 +16,8 @@ public class BookRepository implements IBookRepository {
     private static final String SHOW_lIST = ("select b.*,a.name as author,c.name as category from books as b\n" +
             "join author as a on a.id = b.id_author\n" +
             "join category as c on c.id = b.id_category;");
+    private static final String ADD_BOOK = ("insert into books(title,page_size,id_author,id_category) values (?,?,?,?)");
+    private static final String DELETE_BOOK = "delete from books where id = ?";
 
     @Override
     public List<Book> showList() {
@@ -37,6 +39,36 @@ public class BookRepository implements IBookRepository {
             throwables.printStackTrace();
         }
         return bookList;
+    }
+
+    @Override
+    public boolean addBook(Book book) {
+        Connection connection = BaseRepository.getConnection();
+
+        try {
+            PreparedStatement preparedStatement =  connection.prepareStatement(ADD_BOOK);
+            preparedStatement.setString(1,book.getTitle());
+            preparedStatement.setInt(2,book.getPageSize());
+            preparedStatement.setInt(3,book.getIdAuthor());
+            preparedStatement.setInt(4,book.getIdCategory());
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteBook(int id) {
+        Connection connection = BaseRepository.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BOOK);
+            preparedStatement.setInt(1,id);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 
 

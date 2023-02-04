@@ -6,6 +6,34 @@ public class Book {
     private int pageSize;
     private String author;
     private String category;
+    private int idAuthor;
+    private int idCategory;
+
+    public Book(int id, String title, int pageSize, String author, String category, int idAuthor, int idCategory) {
+        this.id = id;
+        this.title = title;
+        this.pageSize = pageSize;
+        this.author = author;
+        this.category = category;
+        this.idAuthor = idAuthor;
+        this.idCategory = idCategory;
+    }
+
+    public Book(String title, int pageSize, int idAuthor, int idCategory) {
+        this.title = title;
+        this.pageSize = pageSize;
+        this.idAuthor = idAuthor;
+        this.idCategory = idCategory;
+    }
+
+    public Book(String title, int pageSize, String author, String category, int idAuthor, int idCategory) {
+        this.title = title;
+        this.pageSize = pageSize;
+        this.author = author;
+        this.category = category;
+        this.idAuthor = idAuthor;
+        this.idCategory = idCategory;
+    }
 
     public Book() {
     }
@@ -63,5 +91,21 @@ public class Book {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getIdAuthor() {
+        return idAuthor;
+    }
+
+    public void setIdAuthor(int idAuthor) {
+        this.idAuthor = idAuthor;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 }
