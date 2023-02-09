@@ -18,6 +18,7 @@ public class BookRepository implements IBookRepository {
             "join category as c on c.id = b.id_category;");
     private static final String ADD_BOOK = ("insert into books(title,page_size,id_author,id_category) values (?,?,?,?)");
     private static final String DELETE_BOOK = "delete from books where id = ?";
+    private static final String FIND_BY_TITLE = "select * from books where title = ?";
 
     @Override
     public List<Book> showList() {
